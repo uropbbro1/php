@@ -12,5 +12,3 @@ if (isset($_POST['id']) && isset($_POST['type'])) {
         echo "Error";
     }
 } else echo "Error";
-
-?>
