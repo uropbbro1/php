@@ -1,7 +1,7 @@
 <?php
+require "database.php";
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
-require "database.php";
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
@@ -12,16 +12,13 @@ if ($_POST['username'] !== "" && $_POST['password'] !== "") {
     $sql = "SELECT * FROM `users` WHERE username='$username'";
     $result = mysqli_query($connection, $sql);
     $result = $result->fetch_all();
-    $user_id = $result[0];
-    $username = $result[1];
-    $email = $result[2];
-    $type = $resul[4];
-    $avatar = $result[5];
+    $user_id = $result[0][0];
+    $username = $result[0][1];
+    $email = $result[0][2];
+    $type = $result[0][4];
+    $avatar = $result[0][5];
 
-
-
-
-    if ($result[0][3] == $password)
+    if (password_verify($password, $result[0][3]))
     {
         echo '{';
         echo "\"result\": \"Success\", ";
@@ -40,4 +37,5 @@ if ($_POST['username'] !== "" && $_POST['password'] !== "") {
     echo "\"result\": \"All fields required!\"";
     echo '}';
 }
+
 ?>
