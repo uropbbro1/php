@@ -1,7 +1,7 @@
 <?php
 require "database.php";
 
-if (isset($_POST['id']) && $_POST['type']) {
+if (isset($_POST['id']) && isset($_POST['type'])) {
     $id = $_POST['id'];
     $type = $_POST['type'];
     $sql = "UPDATE `users` SET `type`='$type' WHERE `id`=$id";
