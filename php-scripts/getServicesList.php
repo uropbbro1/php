@@ -1,7 +1,7 @@
 <?php
+require "database.php";
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
-require "database.php";
 
 $company_id = prepareData($_POST['company_id']);
 

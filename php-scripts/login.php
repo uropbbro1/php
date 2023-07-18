@@ -1,6 +1,7 @@
 <?php
 require "database.php";
 header("access-control-allow-origin: *");
+
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = prepareData($_POST['username']);
     $password = prepareData($_POST['password']);
@@ -16,7 +17,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $avatar = $result[0][5];
 
 
-    if ($result[0][3] == $password) {
+    if (password_verify($password, $result[0][3])) {
         echo '[{';
         echo "\"id\"=$user_id, ";
         echo "\"username\"=\"$username\", ";

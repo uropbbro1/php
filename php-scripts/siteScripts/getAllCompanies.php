@@ -1,14 +1,14 @@
 <?php
+require "database.php";
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
-require "database.php";
 
 $check = "SELECT * FROM `company`";
 $result = mysqli_query($connection, $check);
 $result = $result->fetch_all();
+
 echo '[';
-for ($i = 0; $i < count($result); $i++)
-{
+for ($i = 0; $i < count($result); $i++) {
     $user_id = $result[$i][0];
     $owner_id = $result[$i][1];
     $name = $result[$i][2];
@@ -47,9 +47,10 @@ for ($i = 0; $i < count($result); $i++)
     echo "\"services_id\": \"$services_id\", ";
     echo "\"info\": \"$info\"";
     echo '}';
-    if (($i+1) != count($result)) {
+    if (($i + 1) != count($result)) {
         echo ', ';
     }
 }
 echo ']';
+
 ?>

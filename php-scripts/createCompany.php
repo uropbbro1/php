@@ -1,6 +1,7 @@
 <?php
 require "database.php";
 header("access-control-allow-origin: *");
+
 if (isset($_POST['owner_id']) && isset($_POST['name']) &&
     isset($_POST['address']) &&
     isset($_POST['phone']) &&

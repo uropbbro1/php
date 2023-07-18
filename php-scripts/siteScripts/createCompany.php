@@ -1,9 +1,9 @@
 <?php
+require "database.php";
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
-require "database.php";
 
-$_POST = json_decode(file_get_contents("php://input"),true);
+$_POST = json_decode(file_get_contents("php://input"), true);
 
 $owner_id = prepareData($_POST['owner_id']);
 $name = prepareData($_POST['name']);
@@ -33,10 +33,5 @@ if ($result) {
     echo "Error";
     die;
 }
-else{
-    echo '{';
-    echo "\"result\": \"company name is already used\"";
-    echo '}';
-    die;
-}
+
 ?>
